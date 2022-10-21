@@ -1,4 +1,4 @@
-import mysql.connector
+from mysql.connector import connect
 
 dbconnect = open('dbconnect.txt', 'r').readlines()
 
@@ -7,20 +7,18 @@ password = (dbconnect[1][9:]).strip()
 host = (dbconnect[2][5:]).strip()
 database = (dbconnect[3][9:]).strip()
 
-conn = mysql.connector.connect(
-
-    user=user,
-    password=password,
-    host=host,
-    database=database
-
+conn = connect(
+    user = user,
+    password = password,
+    host = host,
+    database = database
 )
 
-print('Połączono z', host)
-print('Baza danych:', database)
+print(f'Połączono z {host}')
+print(f'Baza danych: {database}')
 
 while True:
-    query = input('>>>').strip()
+    query = input(f'[{user}@{database}]$ ').strip()
 
     if query == 'end':
         break
