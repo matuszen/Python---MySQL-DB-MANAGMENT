@@ -1,0 +1,5 @@
+name: SQL-Database-managment
+
+dependencies:
+  - python=3.10
+  - mysql.connector
