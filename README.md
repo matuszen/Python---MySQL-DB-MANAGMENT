@@ -28,9 +28,9 @@ This Python script allows you to connect to a MySQL database and execute queries
 ## Usage
 
 Open a terminal and navigate to the project directory, and then run a script
-You will be prompted to enter MySQL queries in the format user@database$. Type your query and press Enter.
-To exit the program, type end or exit.
+You will be prompted to enter MySQL queries. Type your query and press Enter.
 The script will execute the query and display the results.
+To exit the program, type end or exit.
 
 ## Contributing
 
