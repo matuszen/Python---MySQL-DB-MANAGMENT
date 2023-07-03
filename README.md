@@ -4,8 +4,8 @@ This Python script allows you to connect to a MySQL database and execute queries
 
 ## Prerequisites
 
-- Python 3.10
-- MySQL Connector/Python library
+- Python 3.10 or higher
+- mysql-connector-python
 
 ## Installation
 
