@@ -58,5 +58,3 @@ while True:
         print(record)
 
     print()
-
-input("\nNacisnij dowolny klawisz aby wyjść z programu")
