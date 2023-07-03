@@ -1,1 +1,1 @@
-# Python-MySQL-DB-MANAGMENT
+# Python-SQL-DB-MANAGMENT
