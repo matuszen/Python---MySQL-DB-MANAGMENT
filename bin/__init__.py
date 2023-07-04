@@ -7,7 +7,7 @@ from configparser import ConfigParser
 
 def main() -> None:
     config = ConfigParser()
-    config.read("../config.ini")
+    config.read("config.ini")
 
     host = config.get("Database", "host")
     database = config.get("Database", "database_name")
@@ -34,16 +34,16 @@ def main() -> None:
 
     while True:
         query = input(f"{user}@{database}$ ").strip()
+        query_lower = query.lower()
 
-        if query.lower() in ("end", "exit"):
+        if query_lower in ("end", "exit"):
             break
 
-        elif query.lower() in ("cls", "clear"):
+        elif query_lower in ("cls", "clear"):
             if system() == "Windows":
                 os.system("cls")
             else:
                 os.system("clear")
-
             continue
 
         try:
@@ -56,8 +56,15 @@ def main() -> None:
             log(e, type="error")
             continue
 
-        for record in result:
-            print(record)
+        if query_lower == "show tables":
+            print(database)
+            for record in result:
+                print(f" |")
+                print(f" |__{record[0]}")
+
+        else:
+            for record in result:
+                print(record)
 
         print()
 
