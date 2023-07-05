@@ -1,3 +1,4 @@
+import os
 import sys
 from datetime import datetime
 from typing import Optional, Union, TextIO
@@ -61,3 +62,21 @@ def log(
         write_output(sys.stdout)
     else:
         write_output(sys.stderr)
+
+
+def sql_syntax_completer(text: str, state):
+    commands = [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE",
+        "CREATE",
+        "ALTER",
+        "DROP",
+    ]
+
+    options = [cmd for cmd in commands if cmd.startswith(text.upper())]
+    if state < len(options):
+        return options[state]
+    else:
+        return None

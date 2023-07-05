@@ -1,8 +1,10 @@
-import os
+# import pyreadline
 from utils import *
 import mysql.connector
-from platform import system
+import platform
 from configparser import ConfigParser
+
+from commands.SHOW import _show_query_handling
 
 
 def main() -> None:
@@ -32,6 +34,13 @@ def main() -> None:
     else:
         log("Succesfully connected", ending="\n\n")
 
+    # readline.set_completer(sql_syntax_completer)
+    # readline.parse_and_bind("tab: complete")
+
+    # pyreadline.parse_and_bind(
+    #     "tab: complete"
+    # )
+
     while True:
         query = input(f"{user}@{database}$ ").strip()
         query_lower = query.lower()
@@ -40,7 +49,7 @@ def main() -> None:
             break
 
         elif query_lower in ("cls", "clear"):
-            if system() == "Windows":
+            if platform.system() == "Windows":
                 os.system("cls")
             else:
                 os.system("clear")
@@ -52,15 +61,12 @@ def main() -> None:
 
             result = cursor.fetchall()
 
-        except mysql.connector.errors.ProgrammingError as e:
+        except Exception as e:
             log(e, type="error")
             continue
 
-        if query_lower == "show tables":
-            print(database)
-            for record in result:
-                print(f" |")
-                print(f" |__{record[0]}")
+        if query_lower.startswith("show"):
+            _show_query_handling(query_lower, result, database)
 
         else:
             for record in result:
